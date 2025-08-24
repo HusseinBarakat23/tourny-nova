@@ -12,6 +12,7 @@ import Notifications from "./pages/Notifications";
 import Requests from "./pages/Requests";
 import Profile from "./pages/Profile";
 import TournamentDetails from "./pages/TournamentDetails";
+import TournamentBracketView from "./pages/TournamentBracketView";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="/requests" element={<Requests />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/tournament/:id" element={<TournamentDetails />} />
+            <Route path="/tournament/:tournamentId/bracket" element={<TournamentBracketView />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

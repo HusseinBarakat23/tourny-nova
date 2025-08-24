@@ -7,7 +7,8 @@ import {
   Trophy, 
   Eye,
   UserPlus,
-  Clock
+  Clock,
+  Brackets
 } from "lucide-react";
 
 interface TournamentCardProps {
@@ -26,9 +27,11 @@ interface TournamentCardProps {
     description?: string;
     prize?: string;
   };
+  showBracketView?: boolean;
+  isCreator?: boolean;
 }
 
-const TournamentCard = ({ tournament }: TournamentCardProps) => {
+const TournamentCard = ({ tournament, showBracketView = true, isCreator = false }: TournamentCardProps) => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "upcoming": return "bg-blue-500/20 text-blue-400 border-blue-500/30";
@@ -122,7 +125,19 @@ const TournamentCard = ({ tournament }: TournamentCardProps) => {
           View Details
         </Button>
         
-        {tournament.status === "upcoming" && !isSpotsFull && (
+        {showBracketView && (
+          <Button 
+            variant="outline" 
+            size="sm" 
+            className="flex-1 border-purple-500/20 hover:border-purple-500 hover:bg-purple-500/10 group"
+            onClick={() => window.open(`/tournament/${tournament.id}/bracket`, '_blank')}
+          >
+            <Brackets className="h-4 w-4 mr-2 group-hover:text-purple-500" />
+            View Bracket
+          </Button>
+        )}
+        
+        {tournament.status === "upcoming" && !isSpotsFull && !isCreator && (
           <Button 
             className="btn-glow flex-1" 
             size="sm"

@@ -95,9 +95,13 @@ const MyTournaments = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button size="sm" className="btn-glow flex-1">
+        <Button 
+          size="sm" 
+          className="btn-glow flex-1"
+          onClick={() => window.open(`/tournament/${tournament.id}/bracket?edit=true`, '_blank')}
+        >
           <Settings className="h-4 w-4 mr-2" />
-          Manage
+          Manage Bracket
         </Button>
         <Button variant="outline" size="sm" className="border-primary/20 hover:border-primary">
           <Edit className="h-4 w-4 mr-2" />
@@ -180,7 +184,7 @@ const MyTournaments = () => {
           {participatingTournaments.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {participatingTournaments.map((tournament) => (
-                <TournamentCard key={tournament.id} tournament={tournament} />
+                <TournamentCard key={tournament.id} tournament={tournament} isCreator={false} />
               ))}
             </div>
           ) : (
